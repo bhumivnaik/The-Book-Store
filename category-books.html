@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">The Book Store</div>
+    <nav>
+         <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="categories.html">Categories</a>
+        <a href="cart.html">Cart</a>
+        <a href="about.html">About Us</a>
+    </nav>
+</header>
+
+<div class="search-container">
+    <input type="text" placeholder="Search books...">
+    <button>Search</button>
+</div>
+<section class="collection">
+
+    <h1 id="categoryTitle"></h1>
+
+    <div class="book-grid" id="booksContainer"></div>
+
+</section>
+
+<script>
+
+let booksData = {
+
+    kids: [
+        {name:"Fairy Tales", price:250, img:"https://images.unsplash.com/photo-1519682337058-a94d519337bc"},
+        {name:"Moral Stories", price:200, img:"https://images.unsplash.com/photo-1507842217343-583bb7270b66"},
+        {name:"Bedtime Stories", price:300, img:"https://images.unsplash.com/photo-1495446815901-a7297e633e8d"},
+        {name:"The Very Hungry Caterpillar", price:350, img:"https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d"}
+    ],
+
+    fiction: [
+        {name:"The Silent Patient", price:399, img:"https://images.unsplash.com/photo-1544947950-fa07a98d237f"},
+        {name:"Harry Potter", price:599, img:"https://images.unsplash.com/photo-1512820790803-83ca734da794"}
+    ],
+
+    romance: [
+        {name:"It Ends With Us", price:350, img:"https://images.unsplash.com/photo-1524995997946-a1c2e315a42f"}
+    ],
+
+    selfhelp: [
+        {name:"Atomic Habits", price:499, img:"https://images.unsplash.com/photo-1528207776546-365bb710ee93"},
+        {name:"Ikigai", price:380, img:"https://images.unsplash.com/photo-1473862177706-1f3b5f3f1b4f"}
+    ]
+
+};
+
+let selectedCategory = localStorage.getItem("selectedCategory");
+
+document.getElementById("categoryTitle").innerText =
+    selectedCategory.toUpperCase() + " Books";
+
+let container = document.getElementById("booksContainer");
+
+booksData[selectedCategory].forEach(book => {
+
+    container.innerHTML += `
+        <div class="book-card">
+            <img src="${book.img}">
+            <h3>${book.name}</h3>
+            <p>₹${book.price}</p>
+            <button onclick="addToCart('${book.name}',${book.price})">
+                Add to Cart
+            </button>
+        </div>
+    `;
+
+});
+
+function addToCart(name, price){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({name, price});
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Added to Cart 🛒");
+
+}
+
+</script>
+
+</body>
+</html>

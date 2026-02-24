@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Categories</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">The Book Store</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="categories.html">Categories</a>
+        <a href="cart.html">Cart</a>
+        <a href="about.html">About Us</a>
+    </nav>
+</header>
+
+<section class="categories">
+
+    <h1>Browse Categories</h1>
+
+    <div class="category-grid">
+
+        <div class="category-card" onclick="openCategory('kids')">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794">
+            <h3>Kids</h3>
+        </div>
+
+        <div class="category-card" onclick="openCategory('fiction')">
+            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f">
+            <h3>Fiction</h3>
+        </div>
+
+        <div class="category-card" onclick="openCategory('romance')">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f">
+            <h3>Romance</h3>
+        </div>
+
+        <div class="category-card" onclick="openCategory('selfhelp')">
+            <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93">
+            <h3>Self Help</h3>
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+function openCategory(category){
+
+    localStorage.setItem("selectedCategory", category);
+
+    window.location.href = "category-books.html";
+
+}
+
+</script>
+
+</body>
+</html>

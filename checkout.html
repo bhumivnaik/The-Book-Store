@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">The Book Store</div>
+</header>
+
+<section class="checkout">
+
+
+    <h1>Checkout</h1>
+
+    <form onsubmit="placeOrder(event)">
+
+        <input type="text" placeholder="Full Name" required>
+        <input type="text" placeholder="Address" required>
+        <input type="text" placeholder="City" required>
+        <input type="text" placeholder="Phone Number" required>
+
+        <h3>Select Payment Method</h3>
+
+        <label>
+            <input type="radio" name="payment" value="Card" required>
+            Credit / Debit Card
+        </label>
+
+        <label>
+            <input type="radio" name="payment" value="UPI">
+            UPI
+        </label>
+
+        <label>
+            <input type="radio" name="payment" value="COD">
+            Cash on Delivery
+        </label>
+
+        <button type="submit" class="order-btn">Confirm Order</button>
+        <!-- 🔙 Back Button -->
+    <button class="back-btn" onclick="goBack()">← Back to Cart</button>
+
+    </form>
+
+</section>
+
+<script>
+
+function goBack(){
+    window.location.href = "cart.html";
+}
+
+function placeOrder(event){
+
+    event.preventDefault();
+
+    alert("🎉 Order Placed Successfully!");
+
+    localStorage.removeItem("cart");
+
+    window.location.href = "index.html";
+
+}
+
+</script>
+
+</body>
+</html>
