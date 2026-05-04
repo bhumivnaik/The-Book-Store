@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BookEssence</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="books.js"></script>
+    <script src="./style.js"></script>
+    <link rel="stylesheet" href="./allstyle.css">
+    <script>
+        function openProduct(id) {
+            window.location.href = `../3categories/bookdetails.html?id=${id}`;
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <style>
+        /* Hero Section */
+        .hero {
+            background: var(--bg1);
+            text-align: center;
+            padding: 100px 20px;
+            background-color: #e6d5c3;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .subhero h1 {
+            font-family: 'Playfair Display', serif;
+            color: antiquewhite;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .subhero p {
+            font-size: 18px;
+            color: #ffe8d4;
+            margin-bottom: 30px;
+        }
+
+        .subhero button {
+            padding: 12px 30px;
+            background-color: var(--textp);
+            border-color: var(--bg3);
+            color: var(--bg3);
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .hero button:hover {
+            background-color: #8c6a4f;
+            ;
+            color: var(--bg3);
+        }
+
+        .carousel {
+            width: 200px;
+            height: 290px;
+            position: relative;
+            margin: 60px auto 0;
+        }
+
+        .card {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            transition: 0.5s;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .card:nth-child(1) {
+            transform: translateX(-350px) rotate(-40deg);
+            opacity: 0.55;
+            z-index: 1;
+        }
+
+        .card:nth-child(2) {
+            transform: translateX(-250px) rotate(-25deg);
+            opacity: 0.75;
+            z-index: 2;
+        }
+
+        .card:nth-child(3) {
+            transform: translateX(-120px) rotate(-10deg);
+            opacity: 0.9;
+            z-index: 3;
+        }
+
+        .card:nth-child(4) {
+            transform: translateX(0) scale(1.3);
+            opacity: 0.9;
+            z-index: 4;
+        }
+
+        .card:nth-child(5) {
+            transform: translateX(120px) rotate(10deg);
+            opacity: 0.9;
+            z-index: 3;
+        }
+
+        .card:nth-child(6) {
+            transform: translateX(250px) rotate(25deg);
+            opacity: 0.75;
+            z-index: 2;
+        }
+
+        .card:nth-child(7) {
+            transform: translateX(350px) rotate(40deg);
+            opacity: 0.55;
+            z-index: 1;
+
+        }
+
+        /* Books Section */
+        .books {
+            padding: 60px;
+            text-align: center;
+            background-color: var(--bg2);
+        }
+
+        .books h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .book-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .book-card {
+            background-color: white;
+            width: 220px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .book-card img {
+            width: 220px;
+            height: 250px;
+            object-fit: fill;
+            background: transparent;
+        }
+
+        .book-card h3 {
+            margin: 15px 0 5px;
+        }
+
+        .book-card button {
+            background: var(--textp);
+            border: none;
+            padding: 10px 60px;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .book-card button:hover {
+            background: #8c6a4f;
+        }
+
+        /* Right icon group */
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Icons */
+        .nav-icons i {
+            display: none;
+            color: #4b0a3c;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .nav-icons i:hover {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 900px) {
+            .nav-icons i {
+                display: flex;
+            }
+
+
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 30px;
+            padding: 8px 15px;
+            width: 60%;
+            margin-left: 55px;
+            max-width: 500px;
+            box-shadow: 0 4px 15px rgba(65, 8, 52, 0.411);
+            transition: 0.3s;
+        }
+
+        .search-container:focus-within {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        .search-icon {
+            color: #4b0a3c;
+            margin-right: 10px;
+        }
+
+        .search-container input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 13px;
+            background: #fff;
+            color: #4b0a3c;
+        }
+
+        #clearBtn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            display: block;
+            color: #888;
+            border-radius: 50%;
+            border: 1px solid transparent;
+
+            transition: all 0.3s ease;
+        }
+
+        #clearBtn:hover {
+            border: 1px solid #4b0a3c;
+            color: #4b0a3c;
+        }
+
+
+
+        .search-container.show {
+            display: flex;
+            animation: slideDown 0.3s ease;
+        }
+
+
+
+
+
+
+
+
+
+        /* Search Icon */
+        .search-icon {
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        /* Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: height 0.4s ease;
+            z-index: 999;
+        }
+
+        /* Active state */
+        .search-overlay.active {
+            height: 100vh;
+        }
+
+        /* Input */
+        .search-overlay input {
+            width: 60%;
+            padding: 15px 20px;
+            font-size: 18px;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        /* Close icon */
+        .close-search {
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            font-size: 26px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Book<h1 id="sec">Essence</h1>
+        </div>
+        <div class="search-container" id="searchBar">
+            <i class="fa fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search by title or author...">
+            <button id="clearBtn">&times;</button>
+        </div>
+        <div class="nav-icons">
+            <div class="search-icon"">
+                <i class=" fa-solid fa-magnifying-glass"></i>
+            </div>
+            <a href="../4cart/cart.html">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+
+            <!-- Hamburger -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <nav id="navLinks">
+
+            <a href="../1home/index.html">Home</a>
+            <a href="../3categories/categories.html">Categories</a>
+            <a href="../5about/about.html">AboutUs</a>
+            <a href="../4cart/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+
+            <button class="login-btn" onclick="location.href='login.html'">Login</button>
+        </nav>
+    </header>
+    <div class="search-overlay" id="searchOverlay">
+        <input type="text" id="navSearchInput" placeholder="Search books...">
+        <i class="fa-solid fa-xmark close-search" onclick="toggleSearch()"></i>
+    </div>
+
+    <section class="hero">
+        <div class="subhero">
+            <h1>Where Stories Live Forever</h1>
+            <p>Discover beautifully curated books for every soul.</p>
+            <button onclick="location.href='../6collection/Explorecollection.html'">Explore Collection</button>
+
+        </div>
+        <div class="carousel">
+            <div class="card"><img src="./assets/Fiction/alchemist.jpg"></div>
+            <div class="card"><img src="./assets/Fiction/fourthwing.jpg"></div>
+            <div class="card"><img src="./assets/Fiction/lifeofpi.jpg"></div>
+            <div class="card"><img src="./assets/Fiction/itendswithus.jpg"></div>
+            <div class="card"><img src="./assets/Fiction/silent patient.jpg"></div>
+            <div class="card"><img src="./assets/Fiction/fourthwing.jpg"></div>
+            <div class="card"><img src="./assets/Fiction/itendswithus.jpg"></div>
+        </div>
+    </section>
+
+    <section class="books">
+        <h2>Featured Books</h2>
+        <div class="book-container">
+            <div class="book-card">
+                <div><img src="./assets/Thriller/womeninthewindow.jpg" alt="Book" onclick="openProduct('${book.id}')">
+                </div>
+                <h3 onclick="openProduct('${book.id}')">women in the window</h3>
+                <p>₹599</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h2 class="footer-logo">BookEssence</h2>
+                <p>
+                    Discover stories that inspire, educate, and transform.
+                    At BookEssence, every book carries a universe waiting to be explored.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Popular Genres</h3>
+                <ul>
+                    <li><a href="#">Fiction</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Horror</a></li>
+                    <li><a href="#">Self Development</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p>Email: support@bookessence.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Location: India</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 BookEssence | Crafted with passion for readers 🤍</p>
+        </div>
+
+    </footer>
+    <script>
+        const bestsellers = books.filter(book => book.bestseller);
+        const bestsellerContainer = document.querySelector(".book-container");
+
+        bestsellers.forEach(book => {
+            bestsellerContainer.innerHTML += `
+            <div class="book-card">
+                <img src=${book.image} alt="Book" onclick="openProduct('${book.id}')">
+                <h3 onclick="openProduct('${book.id}')"> ${book.title}</h3>
+                <p>₹${book.price}</p>
+                <button>Add to Cart</button>
+            </div>
+            `;
+        });
+
+
+
+        function toggleMenu() {
+            document.getElementById("navLinks").classList.toggle("show");
+            document.querySelector(".menu-icon i").classList.toggle("fa-xmark");
+        }
+
+        $(".search-icon").click(function () {
+            $(".search-container").toggleClass(".search-container.show");
+            $("#searchInput").focus();
+        })
+
+        function toggleSearch() {
+            const overlay = document.getElementById("searchOverlay");
+            overlay.classList.toggle("active");
+
+            if (overlay.classList.contains("active")) {
+                document.getElementById("navSearchInput").focus();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

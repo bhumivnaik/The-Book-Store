@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Books</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="../style.js"></script>
+    <link rel="stylesheet" href="../allstyle.css">
+    <script src="../books.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Collection Section */
+        .collection {
+            padding: 60px;
+            text-align: center;
+            background: #edede9;
+        }
+
+        .collection h1 {
+            font-size: 42px;
+            margin-bottom: 40px;
+            color: var(--textp);
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Card */
+        .book-card {
+            position: relative;
+            background: #ffffff;
+            padding: 18px;
+            border-radius: 18px;
+            width: 220px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: all 0.35s ease;
+            overflow: hidden;
+        }
+
+        /* Hover Effect */
+        .book-card:hover {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+        }
+
+        /* Image Wrapper */
+        .book-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: #f9f9f9;
+            padding: 10px;
+            transition: 0.3s ease;
+        }
+
+        /* Content Section */
+        .book-info {
+            margin-top: 12px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid #e1e0e0;
+            padding-top: 10px;
+
+        }
+
+        /* Category Tag */
+        .category {
+            font-size: 10px;
+            font-weight: 600;
+            color: #8c6a4f;
+            background: #f5eee8;
+            padding: 3px 8px;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        /* Title */
+        .book-info h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #222;
+            margin: 6px 0;
+            overflow: hidden;
+        }
+
+        /* Author */
+        .author {
+            font-size: 13px;
+            color: #777;
+            margin: 2px 0 14px;
+        }
+
+        /* Price */
+        .price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #8c6a4f;
+            margin-top: 4px;
+        }
+
+        /* Button */
+        .book-card button {
+            width: 100%;
+            background: linear-gradient(135deg, #7a5538, #332111);
+            border: none;
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .book-card button:hover {
+            background: linear-gradient(135deg, #623510, #371d09);
+            transform: scale(1.03);
+        }
+
+
+
+
+        /* Search Bar */
+        .search-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .search-container input {
+            width: 300px;
+            padding: 12px;
+            border-radius: 35px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .search-container button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 200px;
+            background-color: #8b5e34;
+            color: white;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #6e4727;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            color: #777;
+        }
+
+        .empty-state i {
+            font-size: 60px;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Book<h1 id="sec">Essence</h1>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav id="navLinks">
+            <a href="../1home/index.html">Home</a>
+            <a href="../3categories/categories.html">Categories</a>
+            <a href="../5about/about.html">About Us</a>
+            <a href="../4cart/wishlist.html">
+                <i class="fa-solid fa-heart"></i>
+            </a>
+            <a href="../4cart/cart.html" class="cart-icon"><i class="fa-solid fa-cart-shopping"></i><span
+                    id="cart-count">0</span></a>
+            <button class="login-btn" onclick="window.location.href='../2login/login.html'">Login</button>
+        </nav>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search by title or author...">
+        <button id="searchBtn"><i class="fa fa-search search-icon"></i></button>
+    </div>
+
+    <section class="collection">
+        <h1></h1>
+
+        <div class="book-grid">
+
+
+        </div>
+
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h2 class="footer-logo">BookEssence</h2>
+                <p>
+                    Discover stories that inspire, educate, and transform.
+                    At BookEssence, every book carries a universe waiting to be explored.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Popular Genres</h3>
+                <ul>
+                    <li><a href="#">Fiction</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Horror</a></li>
+                    <li><a href="#">Self Development</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p>Email: support@bookessence.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Location: India</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 BookEssence | Crafted with passion for readers 🤍</p>
+        </div>
+
+    </footer>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const category = params.get("category");
+
+        const filteredBooks = books.filter(b => b.category === category);
+
+        const container = document.querySelector(".book-grid");
+        const categoryTitle = document.querySelector(".collection h1");
+        categoryTitle.innerText = category + " Books";
+
+        function addtocart2(bookId, quantity = 1) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            const existing = cart.find(item => item.id === bookId);
+
+            if (existing) {
+                existing.quantity += quantity;
+            } else {
+                cart.push({ id: bookId, quantity });
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            alert("Added to cart!");
+        }
+
+        function displayBooks(filteredBooks) {
+            let output = "";
+
+            if (filteredBooks.length === 0) {
+                output += `
+                <div class="empty-state">
+                    <i class="fa fa-book-open"></i>
+                    <h2>No books found</h2>
+                    <p>Try exploring other categories</p>
+                </div>`;
+            } else {
+                filteredBooks.forEach(book => {
+                    output += `
+               <div class="book-card">
+                    <div class="wishlist-icon"
+     data-id="${book.id}" 
+     onclick="toggleWishlist('${book.id}', this)">
+        <i class="fa-regular fa-heart"></i>
+    </div>
+                    <img src="${book.image}" alt="Book" onclick="openProduct('${book.id}')">
+                    <div class="book-info">
+    <span class="category">${book.category}</span>
+    <h3 onclick="openProduct('${book.id}')">${book.title}</h3>
+    <p class="author">${book.author}</p>
+    <p class="price">Rs. ${book.price}</p>
+    <button onclick="addtocart2('${book.id}')">Add to Cart</button>
+</div></div>
+            `;
+
+
+                });
+            }
+            document.querySelector(".book-grid").innerHTML = output;
+            loadWishlistIcons();
+        }
+        displayBooks(filteredBooks);
+
+        function searchBooks() {
+            let query = document.getElementById("searchInput").value.toLowerCase();
+            if (query === "") {
+                displayBooks(filteredBooks);
+                return;
+            }
+            let searched = filteredBooks.filter(book =>
+                book.title.toLowerCase().includes(query) ||
+                book.author.toLowerCase().includes(query)
+            );
+
+            displayBooks(searched);
+        }
+
+        $(document).ready(function () {
+            $("#searchBtn").click(function () {
+                searchBooks();
+            });
+
+            $("#searchInput").on("keypress", function (e) {
+                if (e.which === 13) {
+                    searchBooks();
+                }
+            });
+
+            $("#searchInput").on("input", function () {
+                searchBooks();
+            });
+        });
+
+
+        function openProduct(id) {
+            window.location.href = `bookdetails.html?id=${id}`;
+        }
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            updateCartCount();
+        });
+    </script>
+    <div id="toast"></div>
+</body>
+
+</html>

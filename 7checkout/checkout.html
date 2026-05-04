@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="../style.js"></script>
+    <script src="../books.js"></script>
+    <link rel="stylesheet" href="../allstyle.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400..700;1,400..700&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Momo+Signature&family=Sacramento&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap');
+
+        :root {
+            /* --primary-color: #4a3f35;
+                --secondary-color: #b08968;
+                --background-color: #edede9;
+                --text-color: #4a3f35; */
+
+            --bg1: linear-gradient(to top, rgb(99, 23, 75), rgb(36, 2, 26));
+            --bg2: #edede9;
+            --bg3: #fdf8ee;
+            --buts: #39002d;
+            --textp: #611244;
+            --buthover: #8c6a4f;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg2);
+            color: var(--textp);
+        }
+
+        /* Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo h1 {
+            font-size: 30px;
+            color: #561d46;
+            text-align: center;
+            font-family: 'Playfair Display';
+            font-weight: bolder;
+            display: inline;
+        }
+
+        #sec {
+            font-size: 30px;
+            color: #561d46;
+            text-align: center;
+            font-family: 'Great Vibes';
+        }
+
+        nav a {
+            text-decoration: none;
+            margin-left: 30px;
+            color: var(--textp);
+            font-weight: 400;
+        }
+
+        nav a:hover {
+            border-bottom: 3px solid #792e5e;
+        }
+
+        .login-btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-left: 30px;
+            border: none;
+            font-weight: 400;
+            border-color: #4a3f35;
+            background: var(--textp);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background-color: #b08968;
+            border-color: #b08968;
+        }
+
+        /* Checkout Page */
+
+        .checkout {
+            max-width: 500px;
+            margin: 60px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .checkout label {
+            display: inline-block;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .back-btn {
+            background: transparent;
+            margin-left: 250px;
+            text-decoration: none;
+            border: none;
+            color: #7f5539;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        .order-btn {
+            padding: 10px 20px;
+            background: var(--textp);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .checkout input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        #orderSummary {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+
+
+
+
+
+
+
+
+
+
+        #orderSummary {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Each item */
+        .order-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: white;
+            border-radius: 10px;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: 0.2s;
+        }
+
+        .order-item:hover {
+            transform: scale(1.02);
+        }
+
+        /* Image */
+        .order-item img {
+            width: 65px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Text */
+        .order-details {
+            flex: 1;
+        }
+
+        .order-details .title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .order-details .qty {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .order-details .price {
+            font-weight: bold;
+            color: var(--textp);
+            margin-top: 5px;
+        }
+
+        /* Total */
+        .order-total {
+            grid-column: span 2;
+            /* 👈 full width */
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ccc;
+            font-weight: bold;
+            text-align: right;
+            font-size: 18px;
+        }
+
+        @media (max-width: 600px) {
+            #orderSummary {
+                grid-template-columns: 1fr;
+                /* 1 per row on mobile */
+            }
+
+            .order-total {
+                grid-column: span 1;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Book<h1 id="sec">Essence</h1>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav id="navLinks">
+            <a href="../1home/index.html">Home</a>
+            <a href="../3categories/categories.html">Categories</a>
+            <a href="../5about/about.html">About Us</a>
+            <a href="../4cart/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            <button class="login-btn" onclick="window.location.href='../2login/login.html'">Login</button>
+        </nav>
+    </header>
+
+    <section class="checkout">
+
+        <h1>Checkout</h1>
+
+        <!-- Order Summary -->
+        <div id="orderSummary"></div>
+
+        <h3>Delivery Details</h3>
+        <input type="text" id="address" placeholder="Enter your address" required>
+        <input type="text" id="phone" placeholder="Enter phone number" required>
+
+        <h3>Select Payment Method</h3>
+
+        <input type="radio" name="payment" value="Card"><label> Credit / Debit Card</label><br>
+        <input type="radio" name="payment" value="UPI"><label> UPI</label><br>
+        <input type="radio" name="payment" value="COD"><label> Cash on Delivery</label>
+
+        <br><br>
+
+        <button class="order-btn" onclick="placeOrder()">Confirm Order</button>
+
+
+        <a href="../4cart/cart.html" class="back-btn">Back to Cart</a>
+
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h2 class="footer-logo">BookEssence</h2>
+                <p>
+                    Discover stories that inspire, educate, and transform.
+                    At BookEssence, every book carries a universe waiting to be explored.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Popular Genres</h3>
+                <ul>
+                    <li><a href="#">Fiction</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Horror</a></li>
+                    <li><a href="#">Self Development</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p>Email: support@bookessence.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Location: India</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 BookEssence | Crafted with passion for readers 🤍</p>
+        </div>
+
+    </footer>
+
+</body>
+<script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let buyNow = JSON.parse(localStorage.getItem("buyNowItem"));
+
+    let finalItems = [];
+
+    if (buyNow) {
+        finalItems = [buyNow];
+    } else {
+        finalItems = cart;
+    }
+
+    const container = document.getElementById("orderSummary");
+    let total = 0;
+
+    if (finalItems.length === 0) {
+        container.innerHTML = "<p>No items selected</p>";
+    } else {
+        finalItems.forEach(item => {
+            const book = books.find(b => b.id === item.id);
+            if (!book) return;
+
+            const itemTotal = book.price * item.quantity;
+            total += itemTotal;
+
+            container.innerHTML += `
+    <div class="order-item">
+        <img src="${book.image}">
+        <div class="order-details">
+            <p class="title">${book.title}</p>
+            <p class="qty">Qty: ${item.quantity}</p>
+            <p class="price">₹${itemTotal}</p>
+        </div>
+    </div>
+`;
+        });
+    }
+
+    container.innerHTML += `<div class="order-total">Total: ₹${total}</div>`;
+
+    function placeOrder() {
+        const address = document.getElementById("address").value;
+        const phone = document.getElementById("phone").value;
+        const payment = document.querySelector('input[name="payment"]:checked');
+
+        if (!address || !phone || !payment) {
+            alert("Please fill all details");
+            return;
+        }
+
+        localStorage.setItem("lastOrder", JSON.stringify(finalItems));
+        localStorage.removeItem("cart");
+        localStorage.removeItem("buyNowItem");
+        window.location.href = "../7checkout/confirmation.html";
+    }
+</script>
+
+</html>

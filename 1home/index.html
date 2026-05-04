@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BookEssence</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="../books.js"></script>
+    <script src="../style.js"></script>
+    <link rel="stylesheet" href="../allstyle.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function openProduct(id) {
+            window.location.href = `../3categories/bookdetails.html?id=${id}`;
+        }
+    </script>
+
+    <style>
+        /* Hero Section */
+        .hero {
+            background: var(--bg1);
+            text-align: center;
+            padding: 80px 20px;
+            background-color: #e6d5c3;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .subhero h1 {
+            font-family: 'Playfair Display', serif;
+            color: antiquewhite;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .subhero p {
+            font-size: 18px;
+            color: #ffe8d4;
+            margin-bottom: 30px;
+        }
+
+        .subhero button {
+            padding: 12px 30px;
+            background-color: var(--textp);
+            border-color: var(--bg3);
+            color: var(--bg3);
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .hero button:hover {
+            background-color: #8c6a4f;
+            ;
+            color: var(--bg3);
+        }
+
+        .carousel {
+            width: 200px;
+            height: 290px;
+            position: relative;
+            margin: 60px auto 0;
+        }
+
+        .card {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+
+
+        /* Books Section */
+        .books {
+            padding: 70px 40px;
+            text-align: center;
+            background-color: var(--bg2);
+        }
+
+        .books h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+
+        /* Container */
+        .book-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Card */
+        .book-card {
+            position: relative;
+            background: #ffffff;
+            padding: 18px;
+            border-radius: 18px;
+            width: 220px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: all 0.35s ease;
+            overflow: hidden;
+        }
+
+        /* Hover Effect */
+        .book-card:hover {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+        }
+
+        /* Image Wrapper */
+        .book-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: #f9f9f9;
+            padding: 10px;
+            transition: 0.3s ease;
+        }
+
+        /* Content Section */
+        .book-info {
+            margin-top: 12px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid #e1e0e0;
+            padding-top: 10px;
+
+        }
+
+        /* Category Tag */
+        .category {
+            font-size: 10px;
+            font-weight: 600;
+            color: #8c6a4f;
+            background: #f5eee8;
+            padding: 3px 8px;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        /* Title */
+        .book-info h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #222;
+            margin: 6px 0;
+            overflow: hidden;
+        }
+
+        /* Author */
+        .author {
+            font-size: 13px;
+            color: #777;
+            margin: 2px 0 14px;
+        }
+
+        /* Price */
+        .price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #8c6a4f;
+            margin-top: 4px;
+        }
+
+        /* Button */
+        .book-card button {
+            width: 100%;
+            background: linear-gradient(135deg, #7a5538, #332111);
+            border: none;
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .book-card button:hover {
+            background: linear-gradient(135deg, #623510, #371d09);
+            transform: scale(1.03);
+        }
+
+        /* Wishlist Icon */
+        .wishlist-icon {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #37220f;
+            border-radius: 50%;
+            padding: 6px 11px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .wishlist-icon i {
+            font-size: 16px;
+            color: #999;
+            transition: 0.3s;
+        }
+
+        .wishlist-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .wishlist-icon:hover i {
+            color: #e63946;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Book<h1 id="sec">Essence</h1>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav id="navLinks">
+            <a href="../1home/index.html">Home</a>
+            <a href="../3categories/categories.html">Categories</a>
+            <a href="../5about/about.html">About Us</a>
+            <a href="../4cart/wishlist.html">
+                <i class="fa-solid fa-heart"></i>
+            </a>
+            <a href="../4cart/cart.html" class="cart-icon"><i class="fa-solid fa-cart-shopping"></i><span
+                    id="cart-count">0</span></a>
+            <button class="login-btn" onclick="window.location.href='../2login/login.html'">Login</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="subhero">
+            <h1>Where Stories Live Forever</h1>
+            <p>Discover beautifully curated books for every soul.</p>
+            <button onclick="location.href='../6collection/Explorecollection.html'">Explore Collection</button>
+        </div>
+        <div class="carousel">
+            <div class="card"><img src="../assets/Horror/kingsorrow.jpg"></div>
+            <div class="card"><img src="../assets/Biography/educated.jpg"></div>
+            <div class="card"><img src="../assets/Fiction/fourthwing.jpg"></div>
+            <div class="card"><img src="../assets/Fiction/lifeofpi.jpg"></div>
+            <div class="card"><img src="../assets/Fiction/itendswithus.jpg"></div>
+            <div class="card"><img src="../assets/Fiction/silent patient.jpg"></div>
+            <div class="card"><img src="../assets/Fantasy/agameofthrones.jpg"></div>
+            <div class="card"><img src="../assets/Manga/apothearydiary.jpg"></div>
+            <div class="card"><img src="../assets/Finance/simplewaytowealth.jpg"></div>
+        </div>
+    </section>
+
+    <section class="books">
+        <h2>Featured Books</h2>
+        <div class="book-container">
+
+
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h2 class="footer-logo">BookEssence</h2>
+                <p>
+                    Discover stories that inspire, educate, and transform.
+                    At BookEssence, every book carries a universe waiting to be explored.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Popular Genres</h3>
+                <ul>
+                    <li><a href="#">Fiction</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Horror</a></li>
+                    <li><a href="#">Self Development</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p>Email: support@bookessence.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Location: India</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 BookEssence | Crafted with passion for readers 🤍</p>
+        </div>
+
+    </footer>
+
+    <!-- bestseller.js -->
+    <script>
+        const bestsellers = books.filter(book => book.bestseller);
+        const $bestsellerContainer = $(".book-container");
+
+        function openProduct(id) {
+            window.location.href = `../3categories/bookdetails.html?id=${id}`;
+        }
+
+        function addtocart2(bookId, quantity = 1) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            const existing = cart.find(item => item.id === bookId);
+
+            if (existing) {
+                existing.quantity += quantity;
+            } else {
+                cart.push({ id: bookId, quantity });
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            showToast("Added to cart!");
+        }
+
+        $(document).ready(function () {
+            bestsellers.forEach(book => {
+                $bestsellerContainer.append(`
+                <div class="book-card">
+                    <div class="wishlist-icon"
+     data-id="${book.id}" 
+     onclick="toggleWishlist('${book.id}', this)">
+        <i class="fa-regular fa-heart"></i>
+    </div>
+                    <img src="${book.image}" alt="Book" onclick="openProduct('${book.id}')">
+                    <div class="book-info">
+    <span class="category">${book.category}</span>
+    <h3 onclick="openProduct('${book.id}')">${book.title}</h3>
+    <p class="author">${book.author}</p>
+    <p class="price">Rs. ${book.price}</p>
+    <button onclick="addtocart2('${book.id}')">Add to Cart</button>
+</div></div>
+            `);
+            });
+            loadWishlistIcons();
+        });
+
+
+
+        //for cart count
+        document.addEventListener("DOMContentLoaded", function () {
+            updateCartCount();
+        });    
+    </script>
+
+    <!-- animate.js -->
+    <script>
+        let $cards = $('.card');
+        const positions = [-450, -350, -250, -120, 0, 120, 250, 350, 450];
+        const rotations = [-50, -40, -25, -10, 0, 10, 25, 40, 50];
+        const opacity = [0.45, 0.55, 0.75, 0.9, 1, 0.9, 0.75, 0.55, 0.45];
+
+        function updateCarousel() {
+            $cards.each(function (i) {
+                $(this).css({
+                    transform: `translateX(${positions[i]}px) 
+                                      rotate(${rotations[i]}deg) scale(${i === 4 ? 1.3 : 1})`,
+                    opacity: opacity[i],
+                    zIndex: 10 - Math.abs(i - 4)
+                });
+            });
+        }
+        function rotateCarousel() {
+            let $first = $cards.first();
+            $first.parent().append($first);
+            $cards = $('.card');
+            updateCarousel();
+        }
+        $(document).ready(function () {
+            updateCarousel();
+            setInterval(rotateCarousel, 1500);
+        });
+
+    </script>
+    <!-- <script src="../3categories/addtocart.js"></script> -->
+    <div id="toast"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Wishlist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="../books.js"></script>
+    <script src="../style.js"></script>
+    <link rel="stylesheet" href="../allstyle.css">
+
+    <style>
+        /* Books Section */
+        .wishlist {
+            padding: 70px 40px;
+            text-align: center;
+            background-color: var(--bg2);
+        }
+
+        .wishlist h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+
+        /* Container */
+        .wishlist-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .remove-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #37220f;
+            border-radius: 50%;
+            padding: 6px 11px;
+            font-size: 14px;
+            color: #999;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .remove-icon:hover {
+            color: #e63946;
+            background: #ffdbbb;
+            transform: scale(1.1);
+        }
+
+        /* Card */
+        .book-card {
+            position: relative;
+            background: #ffffff;
+            padding: 18px;
+            border-radius: 18px;
+            width: 220px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: all 0.35s ease;
+            overflow: hidden;
+        }
+
+        /* Hover Effect */
+        .book-card:hover {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+        }
+
+        /* Image Wrapper */
+        .book-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: #f9f9f9;
+            padding: 10px;
+            transition: 0.3s ease;
+        }
+
+        /* Content Section */
+        .book-info {
+            margin-top: 12px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid #e1e0e0;
+            padding-top: 10px;
+
+        }
+
+        /* Category Tag */
+        .category {
+            font-size: 10px;
+            font-weight: 600;
+            color: #8c6a4f;
+            background: #f5eee8;
+            padding: 3px 8px;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        /* Title */
+        .book-info h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #222;
+            margin: 6px 0;
+            overflow: hidden;
+        }
+
+        /* Author */
+        .author {
+            font-size: 13px;
+            color: #777;
+            margin: 2px 0 14px;
+        }
+
+        /* Price */
+        .price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #8c6a4f;
+            margin-top: 4px;
+        }
+
+        /* Button */
+        .book-card button {
+            width: 100%;
+            background: linear-gradient(135deg, #7a5538, #332111);
+            border: none;
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .book-card button:hover {
+            background: linear-gradient(135deg, #623510, #371d09);
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Book<h1 id="sec">Essence</h1>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav id="navLinks">
+            <a href="../1home/index.html">Home</a>
+            <a href="../3categories/categories.html">Categories</a>
+            <a href="../5about/about.html">About Us</a>
+            <a href="../wishlist/wishlist.html">
+                <i class="fa-solid fa-heart"></i>
+            </a>
+            <a href="../4cart/cart.html" class="cart-icon"><i class="fa-solid fa-cart-shopping"></i><span
+                    id="cart-count">0</span></a>
+            <button class="login-btn" onclick="location.href='login.html'">Login</button>
+        </nav>
+    </header>
+
+    <section class="wishlist">
+        <h1>Your Wishlist ❤️</h1>
+
+        <div class="wishlist-container"></div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h2 class="footer-logo">BookEssence</h2>
+                <p>
+                    Discover stories that inspire, educate, and transform.
+                    At BookEssence, every book carries a universe waiting to be explored.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Popular Genres</h3>
+                <ul>
+                    <li><a href="#">Fiction</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Horror</a></li>
+                    <li><a href="#">Self Development</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p>Email: support@bookessence.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Location: India</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 BookEssence | Crafted with passion for readers 🤍</p>
+        </div>
+
+    </footer>
+    <script>
+        function renderWishlist() {
+            const container = document.querySelector(".wishlist-container");
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+            container.innerHTML = "";
+
+            if (wishlist.length === 0) {
+                container.innerHTML = "<p>Your wishlist is empty 💔</p>";
+                return;
+            }
+
+            wishlist.forEach(id => {
+                const book = books.find(b => b.id === id);
+                if (!book) return;
+
+                container.innerHTML += `
+        <div class="book-card">
+                    <div class="remove-icon" onclick="removeFromWishlist('${book.id}')">
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+                    <img src="${book.image}" alt="Book" onclick="openProduct('${book.id}')">
+                    <div class="book-info">
+    <span class="category">${book.category}</span>
+    <h3 onclick="openProduct('${book.id}')">${book.title}</h3>
+    <p class="author">${book.author}</p>
+    <p class="price">Rs. ${book.price}</p>
+    <button onclick="addToCart('${book.id}')">Add to Cart</button>
+</div></div>
+        `;
+            });
+        }
+
+        function removeFromWishlist(id) {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+            wishlist = wishlist.filter(item => String(item) !== String(id));
+
+            localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+            showToast("Removed from wishlist ❌");
+            renderWishlist();
+        }
+
+        function addToCart(id) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            const existing = cart.find(item => item.id === id);
+
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ id: id, quantity: 1 });
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            showToast("Added to cart 🛒");
+            updateCartCount();
+        }
+
+        renderWishlist();
+    </script>
+    <div id="toast"></div>
+
+</body>
+
+</html>

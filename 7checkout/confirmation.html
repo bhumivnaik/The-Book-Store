@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Order Confirmed</title>
+    <script src="../books.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            color: green;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+            justify-content: center;
+        }
+
+        img {
+            width: 80px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #611244;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h1>🎉 Order Placed Successfully!</h1>
+        <p>Thank you for shopping with BookEssence</p>
+
+        <div id="orderDetails"></div>
+
+        <h2 id="total"></h2>
+
+        <button onclick="goHome()">Continue Shopping</button>
+    </div>
+
+    <script>
+        const order = JSON.parse(localStorage.getItem("lastOrder")) || [];
+
+        const container = document.getElementById("orderDetails");
+
+        let total = 0;
+
+        if (order.length === 0) {
+            container.innerHTML = "<p>No order found</p>";
+        } else {
+            order.forEach(item => {
+                const book = books.find(b => b.id === item.id);
+                if (!book) return;
+
+                const itemTotal = book.price * item.quantity;
+                total += itemTotal;
+
+                container.innerHTML += `
+                <div class="order-item">
+                    <img src="${book.image}">
+                    <div>
+                        <h3>${book.title}</h3>
+                        <p>Qty: ${item.quantity}</p>
+                        <p>₹${itemTotal}</p>
+                    </div>
+                </div>
+            `;
+            });
+        }
+
+        document.getElementById("total").innerText = "Total Paid: ₹" + total;
+
+        function goHome() {
+            window.location.href = "../1home/index.html";
+        }
+    </script>
+
+</body>
+
+</html>

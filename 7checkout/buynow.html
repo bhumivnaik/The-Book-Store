@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Buy Now</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="../books.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="../style.js"></script>
+    <link rel="stylesheet" href="../allstyle.css">
+    <style>
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        img {
+            width: 120px;
+        }
+
+        .item {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 12px;
+            width: 100%;
+            background: #611244;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Book<h1 id="sec">Essence</h1>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav id="navLinks">
+            <a href="../1home/index.html">Home</a>
+            <a href="../3categories/categories.html">Categories</a>
+            <a href="../5about/about.html">AboutUs</a>
+            <a href="../4cart/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            <button class="login-btn" onclick="location.href='login.html'">Login</button>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Order Summary</h2>
+
+        <div class="item" id="itemDetails"></div>
+
+        <h3>Delivery Details</h3>
+        <input type="text" placeholder="Full Address" id="address" required>
+        <input type="text" placeholder="Phone Number" id="phone" required>
+
+        <h3>Payment Method</h3>
+        <select id="payment">
+            <option>Cash on Delivery</option>
+            <option>UPI</option>
+            <option>Card</option>
+        </select>
+
+        <button onclick="placeOrder()">Place Order</button>
+    </div>
+
+    <script>
+        const data = JSON.parse(localStorage.getItem("buyNowItem"));
+
+        if (!data) {
+            document.body.innerHTML = "<h2>No item selected</h2>";
+        }
+
+        const book = books.find(b => b.id === data.id);
+        const total = book.price * data.quantity;
+
+        document.getElementById("itemDetails").innerHTML = `
+        <img src="${book.image}">
+        <div>
+            <h3>${book.title}</h3>
+            <p>Price: ₹${book.price}</p>
+            <p>Quantity: ${data.quantity}</p>
+            <p><b>Total: ₹${total}</b></p>
+        </div>
+    `;
+
+        function placeOrder() {
+            const address = document.getElementById("address").value;
+            const phone = document.getElementById("phone").value;
+
+            if (address === "" || phone === "") {
+                alert("Please fill all details");
+                return;
+            }
+
+            localStorage.setItem("lastOrder", JSON.stringify([data]));
+            localStorage.removeItem("buyNowItem");
+
+            window.location.href = "../7checkout/confirmation.html";
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BookEssence</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="books.js"></script>
+    <script src="style.js"></script>
+    <link rel="stylesheet" href="allstyle.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function openProduct(id) {
+            window.location.href = `../3categories/bookdetails.html?id=${id}`;
+        }
+    </script>
+
+    <style>
+        /* Hero Section */
+        .hero {
+            background: var(--bg1);
+            text-align: center;
+            padding: 70px 20px;
+            background-color: #e6d5c3;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .subhero h1 {
+            font-family: 'Playfair Display', serif;
+            color: antiquewhite;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .subhero p {
+            font-size: 18px;
+            color: #ffe8d4;
+            margin-bottom: 30px;
+        }
+
+        .subhero button {
+            padding: 12px 30px;
+            background-color: var(--textp);
+            border-color: var(--bg3);
+            color: var(--bg3);
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .hero button:hover {
+            background-color: #8c6a4f;
+            ;
+            color: var(--bg3);
+        }
+
+        .carousel {
+            width: 200px;
+            height: 290px;
+            position: relative;
+            margin: 60px auto 18px;
+        }
+
+        .card {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        /* Books Section */
+        .books {
+            padding: 60px;
+            text-align: center;
+            background-color: var(--bg2);
+        }
+
+        .books h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .book-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .book-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            width: 200px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .book-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: transparent;
+            border-radius: 10px;
+        }
+
+        .book-card h3 {
+            margin: 15px 0 5px;
+        }
+
+        .book-card button {
+            background: var(--textp);
+            border: none;
+            padding: 10px 18px;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .book-card button:hover {
+            background: #8c6a4f;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Book<h1 id="sec">Essence</h1>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav id="navLinks">
+            <a href="../1home/index.html">Home</a>
+            <a href="../3categories/categories.html">Categories</a>
+            <a href="../5about/about.html">About Us</a>
+            <a href="../4cart/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            <button class="login-btn" onclick="location.href='login.html'">Login</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="subhero">
+            <h1>Where Stories Live Forever</h1>
+            <p>Discover beautifully curated books for every soul.</p>
+            <button onclick="location.href='../6collection/Explorecollection.html'">Explore Collection</button>
+        </div>
+        <div class="carousel">
+            <div class="card"><img src="./assets/Horror/kingsorrow.jpg"></div>
+            <div class="card"><img src="./assets/Biography/educated.jpg"></div>
+            <div class="card"><img src="./assets/Fiction/fourthwing.jpg"></div>
+            <div class="card"><img src="./assets/Fiction/lifeofpi.jpg"></div>
+            <div class="card"><img src="./assets/Fiction/itendswithus.jpg"></div>
+            <div class="card"><img src="./assets/Fiction/silent patient.jpg"></div>
+            <div class="card"><img src="./assets/Fantasy/agameofthrones.jpg"></div>
+            <div class="card"><img src="./assets/Manga/apothearydiary.jpg"></div>
+            <div class="card"><img src="./assets/Finance/simplewaytowealth.jpg"></div>
+
+        </div>
+    </section>
+
+    <section class="books">
+        <h2>Featured Books</h2>
+        <div class="book-container">
+
+
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h2 class="footer-logo">BookEssence</h2>
+                <p>
+                    Discover stories that inspire, educate, and transform.
+                    At BookEssence, every book carries a universe waiting to be explored.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Popular Genres</h3>
+                <ul>
+                    <li><a href="#">Fiction</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Horror</a></li>
+                    <li><a href="#">Self Development</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p>Email: support@bookessence.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Location: India</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 BookEssence | Crafted with passion for readers 🤍</p>
+        </div>
+
+    </footer>
+    <script>
+        const bestsellers = books.filter(book => book.bestseller);
+        const bestsellerContainer = document.querySelector(".book-container");
+
+        bestsellers.forEach(book => {
+            bestsellerContainer.innerHTML += `
+            <div class="book-card">
+                <img src=${book.image} alt="Book" onclick="openProduct('${book.id}')">
+                <h3 onclick="openProduct('${book.id}')"> ${book.title}</h3>
+                <p>₹${book.price}</p>
+                <button>Add to Cart</button>
+            </div>
+            `;
+        });
+    </script>
+
+    <script>
+
+        let $cards = $('.card');
+        const positions = [-450, -350, -250, -120, 0, 120, 250, 350, 450];
+        const rotations = [-50, -40, -25, -10, 0, 10, 25, 40, 50];
+        const opacity = [0.45, 0.55, 0.75, 0.9, 1, 0.9, 0.75, 0.55, 0.45];
+
+        function updateCarousel() {
+            $cards.each(function (i) {
+                $(this).css({
+                    transform: `translateX(${positions[i]}px) 
+                                      rotate(${rotations[i]}deg) scale(${i === 4 ? 1.3 : 1})`,
+                    opacity: opacity[i],
+                    zIndex: 10 - Math.abs(i - 4)
+                });
+            });
+        }
+        function rotateCarousel() {
+            let $first = $cards.first();
+            $first.parent().append($first);
+            $cards = $('.card');
+            updateCarousel();
+        }
+        $(document).ready(function () {
+            updateCarousel();
+            setInterval(rotateCarousel, 2500);
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Explore Books</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="../style.js"></script>
+    <link rel="stylesheet" href="../allstyle.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400..700;1,400..700&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Momo+Signature&family=Sacramento&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap');
+
+        :root {
+            /* --primary-color: #4a3f35;
+            --secondary-color: #b08968;
+            --background-color: #edede9;
+            --text-color: #4a3f35; */
+
+            --bg1: linear-gradient(to top, rgb(99, 23, 75), rgb(36, 2, 26));
+            --bg2: #edede9;
+            --bg3: #fdf8ee;
+            --buts: #39002d;
+            --textp: #611244;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg2);
+            color: var(--textp);
+        }
+
+        /* Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo h1 {
+            font-size: 30px;
+            color: #561d46;
+            text-align: center;
+            font-family: 'Playfair Display';
+            font-weight: bolder;
+            display: inline;
+        }
+
+        #sec {
+            font-size: 30px;
+            color: #561d46;
+            text-align: center;
+            font-family: 'Great Vibes';
+        }
+
+        nav a {
+            text-decoration: none;
+            margin-left: 30px;
+            color: var(--textp);
+            font-weight: 400;
+        }
+
+        nav a:hover {
+            border-bottom: 3px solid #792e5e;
+        }
+
+        .login-btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-left: 30px;
+            border: none;
+            font-weight: 400;
+            border-color: #4a3f35;
+            background: var(--textp);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background-color: #b08968;
+            border-color: #b08968;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg1);
+            text-align: center;
+            padding: 100px 20px;
+            background-color: #e6d5c3;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .subhero h1 {
+            font-family: 'Playfair Display', serif;
+            color: antiquewhite;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .subhero p {
+            font-size: 18px;
+            color: #ffe8d4;
+            margin-bottom: 30px;
+        }
+
+        .subhero button {
+            padding: 12px 30px;
+            background-color: var(--textp);
+            border-color: var(--bg3);
+            color: var(--bg3);
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .hero button:hover {
+            background-color: #8c6a4f;
+            ;
+            color: var(--bg3);
+        }
+
+        .carousel {
+            width: 200px;
+            height: 290px;
+            position: relative;
+            margin: 60px auto 0;
+        }
+
+        .card {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            transition: 0.5s;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .card:nth-child(1) {
+            transform: translateX(-350px) rotate(-40deg);
+            opacity: 0.55;
+            z-index: 1;
+        }
+
+        .card:nth-child(2) {
+            transform: translateX(-250px) rotate(-25deg);
+            opacity: 0.75;
+            z-index: 2;
+        }
+
+        .card:nth-child(3) {
+            transform: translateX(-120px) rotate(-10deg);
+            opacity: 0.9;
+            z-index: 3;
+        }
+
+        .card:nth-child(4) {
+            transform: translateX(0) scale(1.3);
+            opacity: 0.9;
+            z-index: 4;
+        }
+
+        .card:nth-child(5) {
+            transform: translateX(120px) rotate(10deg);
+            opacity: 0.9;
+            z-index: 3;
+        }
+
+        .card:nth-child(6) {
+            transform: translateX(250px) rotate(25deg);
+            opacity: 0.75;
+            z-index: 2;
+        }
+
+        .card:nth-child(7) {
+            transform: translateX(350px) rotate(40deg);
+            opacity: 0.55;
+            z-index: 1;
+
+        }
+
+        /* Collection Section */
+        .collection {
+            padding: 60px;
+            text-align: center;
+            background: #edede9;
+        }
+
+        .collection h1 {
+            font-size: 42px;
+            margin-bottom: 40px;
+            color: var(--textp);
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .book-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            width: 200px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .book-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: transparent;
+            border-radius: 10px;
+        }
+
+        .book-card h3 {
+            margin: 15px 0 5px;
+        }
+
+        .book-card button {
+            background: var(--textp);
+            border: none;
+            padding: 10px 18px;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .book-card button:hover {
+            background: #8c6a4f;
+        }
+
+
+        /*FOOTER*/
+        .main-footer {
+            background: var(--bg1);
+            color: var(--bg3);
+            padding: 60px 60px 20px;
+            margin-top: 00px;
+            position: relative;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-col {
+            flex: 1 1 220px;
+        }
+
+        .footer-col h2,
+        .footer-col h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo {
+            margin-top: 45px;
+            font-size: 26px;
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            color: #f6f1eb;
+            transition: 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #b08968;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #b08968;
+            margin-top: 40px;
+            padding-top: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Book<h1 id="sec">Essence</h1>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav id="navLinks">
+            <a href="../1home/index.html">Home</a>
+            <a href="../3categories/categories.html">Categories</a>
+            <a href="../5about/about.html">About Us</a>
+            <a href="../4cart/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            <button class="login-btn" onclick="location.href='login.html'">Login</button>
+        </nav>
+    </header>
+    <section class="collection">
+
+        <h1>Explore Our Collection</h1>
+
+        <div class="book-grid">
+
+            <!-- Book 1 -->
+            <div class="book-card">
+                <img src="./assets/Fantasy/agameofthrones.jpg">
+                <h3>A Game of Thrones</h3>
+                <p>₹399</p>
+                <button onclick="addToCart('The Silent Patient',399)">Add to Cart</button>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="book-card">
+                <img src="./assets/Thriller/womeninthewindow.jpg">
+                <h3>The woman in the window</h3>
+                <p>₹499</p>
+                <button onclick="addToCart('Atomic Habits',499)">Add to Cart</button>
+            </div>
+
+            <!-- Book 3 -->
+            <div class="book-card">
+                <img src="./assets/Biography/steve-jobs.jpg">
+                <h3>Steve Jobs</h3>
+                <p>₹350</p>
+                <button onclick="addToCart('It Ends With Us',350)">Add to Cart</button>
+            </div>
+
+            <!-- Book 4 -->
+            <div class="book-card">
+                <img src="./assets/Horror/kingsorrow.jpg">
+                <h3>King Sorrow</h3>
+                <p>₹599</p>
+                <button onclick="addToCart('Harry Potter',599)">Add to Cart</button>
+            </div>
+
+            <!-- Book 5 -->
+            <div class="book-card">
+                <img src="./assets/Finance/thinkandgrowrich.jpg">
+                <h3>Think and Grow Rich</h3>
+                <p>₹299</p>
+                <button onclick="addToCart('The Alchemist',299)">Add to Cart</button>
+            </div>
+
+            <!-- Book 6 -->
+            <div class="book-card">
+                <img src="./assets/Personal Development/couragetobedisliked.jpg">
+                <h3>Courage to be disliked</h3>
+                <p>₹420</p>
+                <button onclick="addToCart('Rich Dad Poor Dad',420)">Add to Cart</button>
+            </div>
+
+            <!-- Book 7 -->
+            <div class="book-card">
+                <img src="./assets/Manga/fragrant flowers.jpg">
+                <h3>Fragrant Flowers</h3>
+                <p>₹380</p>
+                <button onclick="addToCart('Ikigai',380)">Add to Cart</button>
+            </div>
+
+            <!-- Book 8 -->
+            <div class="book-card">
+                <img src="./assets/Horror/library athellborn.jpg">
+                <h3>Library at Hellborn</h3>
+                <p>₹450</p>
+                <button onclick="addToCart('The Psychology of Money',450)">Add to Cart</button>
+            </div>
+
+            <!-- Book 9 -->
+            <div class="book-card">
+                <img src="./assets/Finance/Rich dad poor dad.jpg">
+                <h3>Rich Dad Poor Dad</h3>
+                <p>₹390</p>
+                <button onclick="addToCart('Think Like a Monk',390)">Add to Cart</button>
+            </div>
+
+            <!-- Book 10 -->
+            <div class="book-card">
+                <img src="./assets/Fiction/alchemist.jpg">
+                <h3>Alchemist</h3>
+                <p>₹410</p>
+                <button onclick="addToCart('The Power of Habit',410)">Add to Cart</button>
+            </div>
+
+            <!-- Book 11 -->
+            <div class="book-card">
+                <img src="./assets/Fantasy/name-of-the-wind.jpg">
+                <h3>Name of the Wind</h3>
+                <p>₹270</p>
+                <button onclick="addToCart('You Can Win',270)">Add to Cart</button>
+            </div>
+
+            <!-- Book 12 -->
+            <div class="book-card">
+                <img src="./assets/Biography/becoming.jpg">
+                <h3>Becoming</h3>
+                <p>₹480</p>
+                <button onclick="addToCart('The 5 AM Club',480)">Add to Cart</button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h2 class="footer-logo">BookEssence</h2>
+                <p>
+                    Discover stories that inspire, educate, and transform.
+                    At BookEssence, every book carries a universe waiting to be explored.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Popular Genres</h3>
+                <ul>
+                    <li><a href="#">Fiction</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Horror</a></li>
+                    <li><a href="#">Self Development</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p>Email: support@bookessence.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Location: India</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 BookEssence | Crafted with passion for readers 🤍</p>
+        </div>
+
+    </footer>
+</body>
+
+</html>
